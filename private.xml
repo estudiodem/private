@@ -1,0 +1,516 @@
+<?xml version="1.0"?>
+<root>
+    <appdef>
+        <!-- 特定のアプリケーションの設定 -->
+        <appname>Adobe_Photoshop_CS6</appname>
+        <equal>com.adobe.Photoshop</equal>
+        <!--
+         Application Bundle Identifier(equalの中身)は
+         EventViewerから取得。appnameは任意。
+         -->
+        
+        <!-- 特定のデバイス -->
+        <devicevendordef>
+            <vendorname>ELECOM</vendorname>
+            <vendorid>0x056e</vendorid>
+        </devicevendordef>
+        
+        <deviceproductdef>
+            <productname>MY_KEYPAD</productname>
+            <productid>0x1042</productid>
+        </deviceproductdef>
+        <!-- 
+         デバイス変更時は上の内容を丸々変えること。
+         vendorname, productnameは任意、
+         vendorid, productidもEventViewerから。
+         -->
+
+    </appdef>
+        <item>
+        <name>MY Original Settings for Photoshop</name>
+        
+            <!--
+             BackSpace to ForwardDelete
+             Only My Keypad(ELECOM)
+             -->
+            
+            <item>
+                <name>KEYPAD_BackSpace to ForwardDelete</name>
+                <appendix>! -- ONLY MY ELECOM KEYPAD -- !</appendix>
+                <identifier>private.remap.ForwardDelete</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <device_only>DeviceVendor::ELECOM, DeviceProduct::MY_KEYPAD</device_only>
+                <!--
+                 デバイス変更はroot下のdevicevendordef内も一緒に変更。
+                 device_only内のDeviceVendor, DveiceProductも自分が設定した名前に変更。
+                 あとappendixも変更しとくように。
+                 appendix : This value is used in Preference Pane.
+                 -->
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::DELETE | ModifierFlag::NONE,
+                    KeyCode::FORWARD_DELETE
+                </autogen>
+            </item>
+            
+            <!--
+             Tab to Escape
+             Only My Keypad(ELECOM)
+             -->
+            
+            <item>
+                <name>KEYPAD_Tab to Escape</name>
+                <appendix>! -- ONLY MY ELECOM KEYPAD -- !</appendix>
+                <identifier>private.remap.Escape</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <device_only>DeviceVendor::ELECOM, DeviceProduct::MY_KEYPAD</device_only>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::TAB | ModifierFlag::NONE,
+                    KeyCode::ESCAPE
+                </autogen>
+            </item>
+            
+            <!-- 
+             Enter to Space
+             Enter + shift to enter
+             Only My Keypad(ELECOM)
+             command(3) + space(enter) + [マウス左右]で拡大縮小ができるはず
+             -->
+            <item>
+                <name>Enter Key</name>
+                <identifier>private.remap.enter</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <device_only>DeviceVendor::ELECOM, DeviceProduct::MY_KEYPAD</device_only>
+                <appendix>! -- ONLY MY ELECOM KEYPAD -- !</appendix>
+                <appendix>Enter -> Space</appendix>
+                <appendix>Enter + shift -> Enter</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::ENTER | ModifierFlag::SHIFT_L,
+                    KeyCode::ENTER
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::ENTER,
+                    KeyCode::SPACE
+                </autogen>
+            </item>
+            
+            <item>
+                <name>Kepad Modifiers</name>
+                <appendix>3 -> Option</appendix>
+                <appendix>2 -> Control</appendix>
+                <appendix>1 -> Shift</appendix>
+                <appendix>DOT -> Command</appendix>
+                <identifier>private.remap.keypad_modifiers</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_3,
+                    KeyCode::OPTION_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_2,
+                    KeyCode::CONTROL_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_1,
+                    KeyCode::SHIFT_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_DOT,
+                    KeyCode::COMMAND_L
+                </autogen>
+            </item>
+            
+            <!--
+             +,- -> ],[ ブラシの拡大縮小。+ででかくなる
+             control + +,-  -> ズームイン・ズームアウト
+             shift + +,-    -> 選択レイヤーの切り替え。ELECOMのテンキーでは-が上なので-で上に移動する仕様
+             command + +,-  -> 書いてないけど選択レイヤーを移動できる。-が背面、+が前面
+             option + +,-   -> 書いてないけど元々のショートカットキーの都合上
+                               これでもレイヤー切り替えが可能。ただshiftとは逆に動く
+             -->
+
+
+            <item>
+                <name>Kepad +-</name>
+                <appendix>+ -> ]</appendix>
+                <appendix>- -> [</appendix>
+                <appendix>+ + control -> Zoom in(command + +)</appendix>
+                <appendix>- + control -> Zoom out(command + -)</appendix>
+                <appendix>+ + shift -> select lower layer</appendix>
+                <appendix>- + shift -> select upper layer</appendix>
+                <identifier>private.remap.MinusPlus</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_PLUS | ModifierFlag::SHIFT_L,
+                    KeyCode::BRACKET_LEFT | ModifierFlag::OPTION_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_MINUS | ModifierFlag::SHIFT_L,
+                    KeyCode::BRACKET_RIGHT | ModifierFlag::OPTION_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_PLUS | ModifierFlag::CONTROL_L,
+                    KeyCode::KEYPAD_PLUS | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_MINUS | ModifierFlag::CONTROL_L,
+                    KeyCode::KEYPAD_MINUS | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_PLUS,
+                    KeyCode::BRACKET_RIGHT
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_MINUS,
+                    KeyCode::BRACKET_LEFT
+                </autogen>
+            </item>
+
+
+
+            <!--
+             / + control    -> 表示レイヤーを結合(command + shift + E)
+             / + option     -> 下のレイヤーをスタンプ(command + option + E)
+             / + command    -> 選択範囲をコピーしたレイヤーを新規作成(command + J)
+             / + shift      -> 表示レイヤーの複製を結合(command + option + shift + E)
+             /              -> 保存(command + S)
+             -->
+            <!-- [選択範囲をコピーしたレイヤーを新規作成]は何も選択しないとレイヤーがコピーされるらしい -->
+
+            <item>
+                <name>Keypad /</name>
+                <identifier>private.remap.KeypadSLASH</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>/ + shift -> Marge Visible(Copy)(command + option + shift + E)</appendix>
+                <appendix>/ + option -> Stump to Under Layer(command + option + E)</appendix>
+                <appendix>/ + control -> Marge Visible(command + shift + E)</appendix>
+                <appendix>/ + command -> Layer via Copy(command + J)</appendix>
+                <appendix>/ -> Marge Down(command + E)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_SLASH | ModifierFlag::SHIFT_L,
+                    KeyCode::E, VK_COMMAND, VK_OPTION | ModifierFlag::SHIFT_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_SLASH | ModifierFlag::OPTION_L,
+                    KeyCode::E, VK_COMMAND | ModifierFlag::OPTION_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_SLASH | ModifierFlag::COMMAND_L,
+                    KeyCode::J | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_SLASH | ModifierFlag::CONTROL_L,
+                    KeyCode::E, VK_SHIFT | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_SLASH,
+                    KeyCode::E | ModifierFlag::COMMAND_L
+                </autogen>
+            </item>
+            
+            
+            <!--
+             0 + control    -> 開く(command + O)
+             0 + option     -> web用に保存(command + shift + option + S)
+             0 + command    -> 新規(command + N)
+             0 + shift      -> 別名保存(command + shift + S)
+             0              -> 保存(command + S)
+             -->
+            <!-- shiftについては記述なし -->
+            
+            <item>
+                <name>Keypad0</name>
+                <identifier>private.remap.keypad0</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>0 + control -> Open(command + O)</appendix>
+                <appendix>0 + option -> Save for a Web(command + shift + option + S)</appendix>
+                <appendix>0 + command -> New(command + N)</appendix>
+                <appendix>0 + shift -> Save as(command + shift + S)</appendix>
+                <appendix>0 -> Save(command + S)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_0 | ModifierFlag::CONTROL_L,
+                    KeyCode::O | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_0 | ModifierFlag::OPTION_L,
+                    KeyCode::S, VK_OPTION, VK_SHIFT | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_0 | ModifierFlag::COMMAND_L,
+                    KeyCode::N | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_0,
+                    KeyCode::S | ModifierFlag::COMMAND_L
+                </autogen>
+            </item>
+            
+            <!--
+             4 + control    -> 画像解像度(command + option + I)
+             4 + command    -> 変形(command + T)
+             4 + option     -> 回転ツール(R)
+             4              -> 消しゴムツール(E)
+             -->
+            <item>
+                <name>Keypad4</name>
+                <identifier>private.remap.keypad4</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>4 + control -> Image Size(command + option + I)</appendix>
+                <appendix>4 + command -> Transform(command + T)</appendix>
+                <appendix>4 + option -> Rotate(R)</appendix>
+                <appendix>4 -> Eraser Tool(E)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_4 | ModifierFlag::CONTROL_L,
+                    KeyCode::I, VK_OPTION | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_4 | ModifierFlag::COMMAND_L,
+                    KeyCode::T | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_4 | ModifierFlag::OPTION_L,
+                    KeyCode::R
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_4,
+                    KeyCode::E
+                </autogen>
+            </item>
+
+            <!--
+             5 + control    -> コピー(command + C)
+             5 + option     -> 貼り付け(command + V)
+             5 + command    -> カラーバランス(command + B)
+             5 + shift      -> 描画色と背景色を入れ替え(X)
+             5              -> ブラシツール(B)
+             
+             [左右反転]はphotoshop側からキーボードショートカットを変更する必要有り。
+             メニュー＞イメージ＞画像の回転＞カンバスを左右に反転
+            -->
+
+            <!-- command + B(5) でカラーバランスになるはず -->
+            <item>
+                <name>Keypad5</name>
+                <identifier>private.remap.keypad5</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>5 + control -> Copy(command + C)</appendix>
+                <appendix>5 + option -> Paste(command + V)</appendix>
+                <appendix>5 -> Brash Tool(B)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_5 | ModifierFlag::CONTROL_L,
+                    KeyCode::C | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_5 | ModifierFlag::OPTION_L,
+                    KeyCode::V | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_5 | ModifierFlag::SHIFT_L,
+                    KeyCode::X
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_5,
+                    KeyCode::B
+                </autogen>
+            </item>
+            
+            <!-- 
+             6 + control    -> 左右反転(command + H)
+             6 + option     -> 戻る(command + shift + Z)
+             6 + command    -> レイヤーをグループ化(command + G)
+             6 + shift      -> クリッピングマスク(command + option + G)
+             6              -> 進む(command + option + Z)
+             
+             [左右反転]はphotoshop側からキーボードショートカットを変更する必要有り。
+             メニュー＞イメージ＞画像の回転＞カンバスを左右に反転
+             -->
+            <item>
+                <name>Keypad6</name>
+                <identifier>private.remap.keypad6</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>6 + control -> Flip Horizontal(command + H)</appendix>
+                <appendix>6 + option -> Redo(command + shift + Z)</appendix>
+                <appendix>6 + command -> Group from Layer(command + G)</appendix>
+                <appendix>6 + shift -> Create Clipping Mask(command + option+ G)</appendix>
+                <appendix>6 -> Undo(command + option + Z)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_6 | ModifierFlag::CONTROL_L,
+                    KeyCode::H | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_6 | ModifierFlag::OPTION_L,
+                    KeyCode::Z, VK_SHIFT | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_6 | ModifierFlag::COMMAND_L,
+                    KeyCode::G | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_6 | ModifierFlag::SHIFT_L,
+                    KeyCode::G, VK_OPTION | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_6,
+                    KeyCode::Z, VK_OPTION | ModifierFlag::COMMAND_L
+                </autogen>
+            </item>
+            
+
+            <!--
+             7 + control    -> 色相・彩度(command + U)
+             7 + option     -> トーンカーブ(command + M)
+             7 + command    -> バケツツール(G)
+             7 + shift      -> 彩度を下げる(command + shift + U)
+             7              -> 選択ツール(M)
+             -->
+
+            <item>
+                <name>Keypad7</name>
+                <identifier>private.remap.keypad7</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>7 + control -> Hue/Saturation(command + U)</appendix>
+                <appendix>7 + option -> Curves(command + M)</appendix>
+                <appendix>7 + command -> Bucket Tool(G)</appendix>
+                <appendix>7 + shift -> Desaturate(command + shift + U)</appendix>
+                <appendix>7 -> Select Tool(command + M)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_7 | ModifierFlag::CONTROL_L,
+                    KeyCode::U | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_7 | ModifierFlag::OPTION_L,
+                    KeyCode::M | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_7 | ModifierFlag::COMMAND_L,
+                    KeyCode::G
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_7 | ModifierFlag::SHIFT_L,
+                    KeyCode::U, VK_SHIFT | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_7,
+                    KeyCode::M
+                </autogen>
+            </item>
+            
+            <!--
+             8 + control    -> 境界線を引く(command + control + option + M)
+             8 + option     -> 切り取り(command + X)
+             8 + command    -> 選択を解除(command + D)
+             8              -> 投げ縄ツール(L)
+             [境界線を引く]はphotoshop側からキーボードショートカットを変更する必要有り。
+             メニュー＞編集＞境界線を引く
+             -->
+            
+            <item>
+                <name>Keypad8</name>
+                <identifier>private.remap.keypad8</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <appendix>8 + control -> Stroke(command + control + option + M)</appendix>
+                <appendix>8 + option -> Cut(command + X)</appendix>
+                <appendix>8 + command -> Deselect(command + D)</appendix>
+                <appendix>8 -> Lasso Tool(L)</appendix>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_8 | ModifierFlag::CONTROL_L,
+                    KeyCode::M, VK_CONTROL, VK_OPTION | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_8 | ModifierFlag::OPTION_L,
+                    KeyCode::X | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_8 | ModifierFlag::COMMAND_L,
+                    KeyCode::D | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_8,
+                    KeyCode::L
+                </autogen>
+            </item>
+            
+            <!--
+             9 + control    ->
+             9 + option     -> カンバスサイズ(command + option + C)
+             9 + command    -> 切り抜きツール(C)
+             9              -> 新規レイヤー(command + shift + option + N)
+             -->
+            
+            <item>
+                <name>Keypad9</name>
+                <identifier>private.remap.keypad9</identifier>
+                <only>Adobe_Photoshop_CS6</only>
+                <!-- <appendix>9 + control -> </appendix> -->
+                <appendix>9 + option -> Cunvas Size(command + option + C)</appendix>
+                <appendix>9 + command -> Crop Tool(C)</appendix>
+                <appendix>9 -> New Layer(command + shift + option + N)</appendix>
+                <!--
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_9 | ModifierFlag::CONTROL_L,
+                    KeyCode::
+                </autogen>
+                 -->
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_9 | ModifierFlag::OPTION_L,
+                    KeyCode::C, VK_OPTION | ModifierFlag::COMMAND_L
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_9 | ModifierFlag::COMMAND_L,
+                    KeyCode::C
+                </autogen>
+                <autogen>
+                    __KeyToKey__
+                    KeyCode::KEYPAD_9,
+                    KeyCode::N, VK_SHIFT, VK_OPTION | ModifierFlag::COMMAND_L
+                </autogen>
+            </item>
+    </item>
+</root>
